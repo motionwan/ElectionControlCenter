@@ -1,0 +1,15 @@
+@hostname = http://localhost:3001
+
+
+/// Users api ///
+get {{hostname}}/users
+###
+/// sessions api ///
+post {{hostname}}/users/signup
+Content-Type:application/json
+
+{
+    "name": "John",
+    "email": "john@example.com",
+    "password": "password"
+}

@@ -4,6 +4,6 @@ const port = 3001;
 
 const server = http.createServer(app);
 
-server.listen(() => {
+server.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

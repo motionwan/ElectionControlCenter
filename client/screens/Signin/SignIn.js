@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { SuccessButton } from "../../components/Button/Button";
@@ -8,9 +8,11 @@ import {
   UserInput,
 } from "../../components/FormComponents/FormComponents";
 import RoundLogo from "../../components/RoundLogo/RoundLogo";
+import { AuthContext } from "../../Context/AuthContext";
 import styles from "./SignIn.styles";
 
 const SignIn = ({ navigation }) => {
+  const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,10 +21,11 @@ const SignIn = ({ navigation }) => {
       alert("All fields are required");
     }
     try {
-      const res = await axios.post(`http://localhost:3001/api/signin`, {
+      const res = await axios.post(`http://192.168.0.105:3001/users/signin`, {
         email: email,
         password: password,
       });
+      console.log(res);
     } catch (err) {
       console.log(err);
     }
@@ -54,13 +57,18 @@ const SignIn = ({ navigation }) => {
           />
         </View>
         <View style={styles.btn}>
-          <SuccessButton onPress={handleSubmit} label="Sign In" />
+          <SuccessButton
+            onPress={() => {
+              login(email, password);
+            }}
+            label="Sign In"
+          />
         </View>
         <View style={styles.notRegistered}>
           <Text>
             Not registered?{" "}
             <Text
-              onPress={() => navigation.push("SignUp")}
+              onPress={() => navigation.navigate("SignUp")}
               style={styles.signUp}
             >
               Sign up

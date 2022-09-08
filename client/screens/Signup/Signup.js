@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text } from "react-native";
 import styles from "./Signup.styles";
 import {
   FormHeading,
@@ -11,31 +11,36 @@ import RoundLogo from "../../components/RoundLogo/RoundLogo";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const Signup = ({ navigation }) => {
-  const [name, setName] = useState("benjamin");
-  const [email, setEmail] = useState("benjamin@example.com");
-  const [password, setPassword] = useState("dkljfdls");
-  const [repeatPassword, setRepeatPassword] = useState("ljsdlfsj");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     setLoading(true);
     if (!name || !email || !password || !repeatPassword) {
-      alert("All fields are required fields");
-      setLoading(false);
-      return;
+      alert("All fields are required");
     }
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters");
+    }
+    if (password !== repeatPassword) {
+      alert("Passwords do not match");
+    }
+    setLoading(false);
     try {
-      const res = await axios.post(`http://localhost:3001/api/signup`, {
+      const res = await axios.post(`http://192.168.0.105:3001/users/signup`, {
         name: name,
         email: email,
         password: password,
-        repeatPassword: repeatPassword,
       });
-      console.log(`SIGN UP SUCCESSFUL => ${res.data}`);
-      alert(`Success`);
+      console.log(res);
+      // if res passes the test, send to the homepage
     } catch (err) {
       console.log(err);
       setLoading(false);
+      return;
     }
   };
 
@@ -90,7 +95,7 @@ const Signup = ({ navigation }) => {
           <Text>
             Already registered?{" "}
             <Text
-              onPress={() => navigation.push("LogIn")}
+              onPress={() => navigation.navigate("SignIn")}
               style={styles.signIn}
             >
               Sign In
