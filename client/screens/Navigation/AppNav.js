@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../../Context/AuthContext";
-import { ActivityIndicator, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import SignIn from "../Signin/SignIn";
-import Signup from "../Signup/Signup";
-import MainPage from "../MainPage/MainPage";
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Context/AuthContext';
+import { ActivityIndicator, SafeAreaView, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SignIn from '../Signin/SignIn';
+import Signup from '../Signup/Signup';
+import HomePage from '../HomePage/HomePage';
+import TabNavigator from './TabNavigator/TabNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,24 +15,24 @@ const AppNav = () => {
   if (loading) {
     return (
       <View
-        style={{ flex: 1, justifyContent: "center", alignContent: "center" }}
+        style={{ flex: 1, justifyContent: 'center', alignContent: 'center' }}
       >
-        <ActivityIndicator size={"large"} />
+        <ActivityIndicator size={'large'} />
       </View>
     );
   }
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName='Login'
         screenOptions={{ headerShown: false }}
       >
         {token !== null ? (
-          <Stack.Screen name="MainPage" component={MainPage} />
+          <Stack.Screen name='TabNavigator' component={TabNavigator} />
         ) : (
-          <Stack.Screen name="SignIn" component={SignIn} />
+          <Stack.Screen name='SignIn' component={SignIn} />
         )}
-        <Stack.Screen name="SignUp" component={Signup} />
+        <Stack.Screen name='SignUp' component={Signup} />
       </Stack.Navigator>
     </NavigationContainer>
   );
