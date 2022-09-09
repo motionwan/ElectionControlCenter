@@ -16,6 +16,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
   },
+  invalidEmailPassword: {
+    alignItems: "center",
+  },
+  invalidEmailText: {
+    color: "red",
+    fontSize: 16,
+  },
   signUp: {
     color: "#0066FF",
   },

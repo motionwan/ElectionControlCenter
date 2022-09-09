@@ -1,27 +1,27 @@
-import React from "react";
-import { Text, View, TouchableOpacity, Animated } from "react-native";
-import styles from "./Button.styles";
+import React from 'react';
+import { Text, View, TouchableOpacity, Animated } from 'react-native';
+import styles from './Button.styles';
 
-export const PrimaryButton = ({ label, onPress, loading }) => {
+export const PrimaryButton = ({ label, onPress, loading, type }) => {
   return (
     <View>
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity type={type} onPress={onPress}>
         <View style={styles.primaryButton}>
           <Text style={styles.primaryButtonText}>
-            {loading ? "Please wait..." : label}
+            {loading ? 'Please wait...' : label}
           </Text>
         </View>
       </TouchableOpacity>
     </View>
   );
 };
-export const SuccessButton = ({ label, onPress, loading }) => {
+export const SuccessButton = ({ label, type, onPress, loading }) => {
   return (
     <View>
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity type={type} onPress={onPress}>
         <View style={styles.successButton}>
           <Text style={styles.successButtonText}>
-            {loading ? "Please wait..." : label}
+            {loading ? 'Please wait...' : label}
           </Text>
         </View>
       </TouchableOpacity>
@@ -34,7 +34,7 @@ export const DangerButton = ({ label, onPress, loading }) => {
       <TouchableOpacity onPress={onPress}>
         <View style={styles.dangerButton}>
           <Text style={styles.dangerButtonText}>
-            {loading ? "Please wait..." : label}
+            {loading ? 'Please wait...' : label}
           </Text>
         </View>
       </TouchableOpacity>

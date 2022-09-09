@@ -13,25 +13,28 @@ export const FormHeading = ({ label }) => {
 export const UserInput = ({
   label,
   placeholder,
-  setValue,
+  error,
   value,
   autoCapitalize,
   autoCompleteType,
   secureTextEntry,
   keyboardType,
   autoComplete,
+  onChangeText,
   autoCorrect,
 }) => {
   return (
     <View>
-      <View>
+      <View style={styles.labelAndErrorContainer}>
         <Text style={styles.label}>{label}</Text>
+        <Text style={styles.error}>{error ? error : null}</Text>
       </View>
+
       <View style={styles.input}>
         <TextInput
           placeholder={placeholder}
           value={value}
-          onChangeText={(text) => setValue(text)}
+          onChangeText={onChangeText}
           autoComplete={autoComplete}
           autoCorrect={autoCorrect}
           autoCapitalize={autoCapitalize}

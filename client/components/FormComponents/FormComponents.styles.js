@@ -1,21 +1,31 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   heading: {
-    color: "#666",
+    color: '#666',
     fontSize: 28,
   },
   label: {
-    color: "#666",
-
-    marginHorizontal: 10,
-    textTransform: "uppercase",
+    color: '#666',
+    textTransform: 'uppercase',
+  },
+  labelAndErrorContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 5,
+    marginHorizontal: 9,
+  },
+  error: {
+    color: 'red',
   },
   input: {
-    borderBottomWidth: 0.5,
+    borderWidth: 1,
     marginHorizontal: 10,
-    borderBottomColor: "#666",
-    height: 35,
+    borderColor: '#666',
+    padding: 10,
+    height: 45,
+    borderRadius: 5,
     marginBottom: 30,
   },
 });

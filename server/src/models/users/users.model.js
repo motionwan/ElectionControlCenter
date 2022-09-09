@@ -1,13 +1,13 @@
-require("dotenv").config();
-const Users = require("./users.mongo");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+require('dotenv').config();
+const Users = require('./users.mongo');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const jwtSecret = process.env.JWT_SECRET_KEY;
 
 //create user
-const createUser = async (name, email, password) => {
+const createUser = async (fullName, username, email, password) => {
   password = await bcrypt.hash(password, 10);
-  return await Users.create({ name, email, password });
+  return await Users.create({ fullName, username, email, password });
 };
 
 // sign in user
@@ -15,7 +15,7 @@ const createUser = async (name, email, password) => {
 const signInUser = async (email, password) => {
   const user = await Users.findOne({ email }).lean();
   if (!user) {
-    return { message: "invalid email or password" };
+    return { message: 'invalid email or password' };
   }
 
   if (await bcrypt.compare(password, user.password)) {
@@ -28,9 +28,14 @@ const signInUser = async (email, password) => {
       },
       jwtSecret
     );
-    return { token: token, user: user.email, id: user._id };
+    return {
+      token: token,
+      email: user.email,
+      user: user.username,
+      id: user._id,
+    };
   } else {
-    return { message: "invalid email or password" };
+    return { message: 'Invalid email or password' };
   }
 };
 

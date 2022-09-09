@@ -10,7 +10,7 @@ import MainPage from "../MainPage/MainPage";
 const Stack = createNativeStackNavigator();
 
 const AppNav = () => {
-  const { loading, token } = useContext(AuthContext);
+  const { loading, token, errorMessage } = useContext(AuthContext);
   if (loading) {
     return (
       <View

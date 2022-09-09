@@ -9,7 +9,8 @@ post {{hostname}}/users/signup
 Content-Type:application/json
 
 {
-    "name": "John",
-    "email": "john@example.com",
-    "password": "password"
+    "fullName": "Benjamin Mordedzi",
+    "username":"benjamin100ist",
+    "email": "benjamin100ist@gmail.com",
+    "password": "123456"
 }

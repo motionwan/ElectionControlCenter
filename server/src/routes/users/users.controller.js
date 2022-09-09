@@ -4,21 +4,19 @@ const {
   updateUser,
   getAllUsers,
   signInUser,
-} = require("../../models/users/users.model");
+} = require('../../models/users/users.model');
 
 const httpCreateUser = async (req, res) => {
   try {
-    const name = req.body.name;
+    const fullName = req.body.fullName;
+    const username = req.body.username;
     const email = req.body.email;
     const password = req.body.password;
-    if (password.length < 6) {
-      return res.json({ message: "Password should be at least 6 characters" });
-    }
-    return res.json(await createUser(name, email, password));
+    return res.json(await createUser(fullName, username, email, password));
   } catch (err) {
     if (err.code === 11000) {
-      console.log({ message: "email already exists" });
-      return res.json({ message: "email already registered" });
+      console.log({ message: 'email already exists' });
+      return res.json({ message: 'Email already registered' });
     } else {
       throw err;
     }
