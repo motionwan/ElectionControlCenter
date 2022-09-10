@@ -7,20 +7,13 @@ const {
 } = require('../../models/users/users.model');
 
 const httpCreateUser = async (req, res) => {
-  try {
-    const fullName = req.body.fullName;
-    const username = req.body.username;
-    const email = req.body.email;
-    const password = req.body.password;
-    return res.json(await createUser(fullName, username, email, password));
-  } catch (err) {
-    if (err.code === 11000) {
-      console.log({ message: 'email already exists' });
-      return res.json({ message: 'Email already registered' });
-    } else {
-      throw err;
-    }
-  }
+  const fullName = req.body.fullName;
+  const username = req.body.username;
+  const email = req.body.email;
+  const role = req.body.role;
+  const password = req.body.password;
+
+  return res.json(await createUser(fullName, username, email, role, password));
 };
 
 const httpDeleteUser = async (req, res) => {

@@ -1,12 +1,10 @@
-require('dotenv').config();
-const Users = require('./users.mongo');
+const Users = require('../users/users.mongo');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const jwtSecret = process.env.JWT_SECRET_KEY;
 
-//create user
-const createUser = async (fullName, username, email, role, password) => {
-  password = await bcrypt.hash(password, 10);
+// add regional admins
+const addRegionalAdmin = async (fullName, username, email, role, password) => {
+  password = bcrypt.hash(password, 10);
   try {
     return await Users.create({
       fullName,
@@ -25,9 +23,8 @@ const createUser = async (fullName, username, email, role, password) => {
   }
 };
 
-// sign in user
-
-const signInUser = async (email, password) => {
+// sign in national admin
+const signInNationalAdmin = async (email, password) => {
   const user = await Users.findOne({ email }).lean();
   if (!user) {
     return { message: 'invalid email or password' };
@@ -83,27 +80,4 @@ const signInUser = async (email, password) => {
   } else {
     return { message: 'Invalid email or password' };
   }
-};
-
-//delete user
-const deleteUser = async (id) => {
-  return await Users.findByIdAndDelete(id);
-};
-
-// update user
-const updateUser = async (id, user) => {
-  return await Users.findByIdAndUpdate(id, user);
-};
-
-//read all user from the database
-const getAllUsers = async () => {
-  return await Users.find({});
-};
-
-module.exports = {
-  createUser,
-  deleteUser,
-  updateUser,
-  getAllUsers,
-  signInUser,
 };

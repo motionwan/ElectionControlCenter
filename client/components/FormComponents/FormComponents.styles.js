@@ -28,6 +28,16 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 30,
   },
+  textAreaInput: {
+    borderWidth: 1,
+    marginHorizontal: 10,
+    borderColor: '#666',
+    marginBottom: 30,
+  },
+  textArea: {
+    height: 200,
+    textAlignVertical: 'top',
+  },
 });
 
 export default styles;

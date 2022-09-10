@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    setLoading(false);
+    setLoading(true);
     setToken(null);
     AsyncStorage.removeItem('token');
     AsyncStorage.removeItem('info');
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
 
   const isLoggedIn = async () => {
     try {
-      setLoading(false);
+      setLoading(true);
       let userToken = await AsyncStorage.getItem('token');
       let info = await AsyncStorage.getItem('info');
       info = JSON.parse(info);

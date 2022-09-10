@@ -9,8 +9,9 @@ post {{hostname}}/users/signup
 Content-Type:application/json
 
 {
-    "fullName": "Benjamin Mordedzi",
+    "fullName":"Benjamin Mordedzi",
     "username":"benjamin100ist",
-    "email": "benjamin100ist@gmail.com",
-    "password": "123456"
+    "role":"national_admin",
+    "email":"benjamin100ist@gmail.com",
+    "password":"123456"
 }

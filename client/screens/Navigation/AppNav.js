@@ -7,11 +7,12 @@ import SignIn from '../Signin/SignIn';
 import Signup from '../Signup/Signup';
 import HomePage from '../HomePage/HomePage';
 import TabNavigator from './TabNavigator/TabNavigator';
+import Settings from '../Settings/Settings';
 
 const Stack = createNativeStackNavigator();
 
 const AppNav = () => {
-  const { loading, token, errorMessage } = useContext(AuthContext);
+  const { loading, token } = useContext(AuthContext);
   if (loading) {
     return (
       <View
@@ -24,7 +25,7 @@ const AppNav = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName='Login'
+        initialRouteName='SignIn'
         screenOptions={{ headerShown: false }}
       >
         {token !== null ? (
@@ -33,6 +34,7 @@ const AppNav = () => {
           <Stack.Screen name='SignIn' component={SignIn} />
         )}
         <Stack.Screen name='SignUp' component={Signup} />
+        <Stack.Screen name='Settings' component={Settings} />
       </Stack.Navigator>
     </NavigationContainer>
   );
