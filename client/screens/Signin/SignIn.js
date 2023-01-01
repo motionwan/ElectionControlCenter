@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { View, Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { SuccessButton } from '../../components/Button/Button';

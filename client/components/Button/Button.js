@@ -1,5 +1,11 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, Animated } from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Animated,
+  Pressable,
+} from 'react-native';
 import styles from './Button.styles';
 
 export const PrimaryButton = ({ label, onPress, loading, type }) => {

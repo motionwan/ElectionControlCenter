@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
   dangerButtonText: {
     fontSize: 20,
     color: '#E7E7E7',
-    textTransform: 'uppercase',
   },
   // primary outline
   primaryContainer: {

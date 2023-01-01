@@ -11,13 +11,13 @@ export const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const login = async (email, password) => {
+  const login = async (login, password) => {
     try {
-      const res = await axios.post(`${BASE_URL}/users/signin`, {
-        email,
+      const res = await axios.post(`${BASE_URL}/users/login/phone`, {
+        login,
         password,
       });
-      console.log(res);
+      console.log(res.data);
       const error = res.data.message;
       if (error) {
         AsyncStorage.setItem('errorMessage', JSON.stringify(error));
@@ -27,7 +27,6 @@ export const AuthProvider = ({ children }) => {
       } else {
         setLoading(true);
         if (res) {
-          console.log(res);
           let info = res.data;
           setUserInfo(info);
           setToken(res.data.token);
@@ -38,7 +37,8 @@ export const AuthProvider = ({ children }) => {
         }
       }
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
+      throw err;
     }
   };
 

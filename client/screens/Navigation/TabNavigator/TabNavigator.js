@@ -1,13 +1,12 @@
-import { View, Text } from 'react-native';
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomePage from '../../HomePage/HomePage';
-import CoalitionCenter from '../../CoalitionCenter/CoalitionCenter';
 import Report from '../../Report/Report';
 import Profile from '../../Profile/Profile';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import Settings from '../../Settings/Settings';
+import TopBarNavigation from './TopBarNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,13 +32,14 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name='CoalitionCenter'
-        component={CoalitionCenter}
+        component={TopBarNavigation}
         options={{
           tabBarIcon: ({ color, size }) => {
             return <Feather name='archive' color={color} size={size} />;
           },
         }}
       />
+
       <Tab.Screen
         name='Report'
         component={Report}

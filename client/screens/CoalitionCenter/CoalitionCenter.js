@@ -1,12 +1,15 @@
-import { View, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import TopBarNavigation from './TopBarNavigation/TopBarNavigation';
 
 const CoalitionCenter = () => {
   return (
     <View>
-      <Text>CoalitionCenter</Text>
+      <TopBarNavigation />
     </View>
   );
 };
 
 export default CoalitionCenter;
+
+const styles = StyleSheet.create({});
